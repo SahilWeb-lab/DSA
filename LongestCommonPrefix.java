@@ -2,6 +2,17 @@ package com.practice;
 
 import java.util.Arrays;
 
+/*
+ * Steps to solve:
+ * 1) Sort array of strings
+ * 2) Get first and last string of the array
+ * 3) Minimum length of string among both first and last string:
+ * 4) Start the loop until i < minimum_length and first.character==last.character and increment i every time until condition get false:
+ * 5) Get result using substr(0, i);
+ * 
+ * where i = 0 initially,
+ * */
+
 public class LongestCommonPrefix {
 
 	public static void main(String[] args) {
@@ -29,3 +40,4 @@ public class LongestCommonPrefix {
 	}
 
 }
+
