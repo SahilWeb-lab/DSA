@@ -1,58 +1,51 @@
 package com.practice.array;
 
+import java.util.Arrays;
+
 public class MissingAndRepeatingInAnArray {
 
+//	My Own Approach:
 	public static int[] solution(int arr[]) {
-		int repeatedElement = 0;
 		
-//		Finding Repeated Element:
-		for(int i = 0; i < arr.length - 1; i++) {
-			if(arr[i] == arr[i + 1]) {				
+		int n = arr.length;
+		int repeatedElement = 0;
+		Arrays.sort(arr);
+		for(int i = 0; i < n - 1; i++) {
+			if(arr[i] == arr[i + 1]) {
 				repeatedElement = arr[i];
 			}
 		}
+		
 		System.out.println("Repeated Element : " + repeatedElement);
 		
-//		Find Sum of giving array:
-		int sum = 0;
-		for(int i = 0; i < arr.length; i++) {
-			 if(arr[i] != repeatedElement) {
-				 sum += arr[i];
-			 }
-		}
-		int totalSum = sum + repeatedElement;
+//		find total sum:
+		long totalSum = (long) n * (n + 1) / 2;
+		System.out.println("Total Sum : " + totalSum);
 		
-//		Find maximum element:
-		int max = arr[0];
-		for(int i = 1; i < arr.length; i++) {
-			if(max < arr[i]) {
-				max = arr[i];
-			}
+//		My array element sum:
+		long arrayTotalSum = 0;
+		for(int i : arr) {
+			arrayTotalSum += i;
 		}
 		
-//		Find the actual sum of whole sequence:
-		int actualSum = 0;
-		for(int i = 1; i <= max; i++) {
-			actualSum += i;
-		}
+		arrayTotalSum = arrayTotalSum - repeatedElement;
 		
+		int missingElement = (int) (totalSum - arrayTotalSum);
 		
-		int missingNumber = actualSum - totalSum;
-		
-//		System.out.println("Give Array Elements Sum : " + totalSum);
-//		System.out.println("Actual Sum : " + actualSum);
-//		System.out.println("Missing Number : " + missingNumber);
-		
-		return new int[] {repeatedElement, missingNumber};
+		return new int[] {repeatedElement, missingElement};
 	}
 	
+
+//	public static int[] solution(int arr[]) {
+//		return null;
+//	}
+	
 	public static void main(String[] args) {
-		int arr[] = {6,5,8,7,1,4,1,3,2};
+		int arr[] = {3, 1, 3};
+		int[] solution = solution(arr);
 		
-		int[] result = solution(arr);
-		System.out.println("Result : ");
-		for(int i : result)
-			System.out.println(i);
+		for(int i : solution) 
+			System.out.print(i + " ");
 	}
 
 }
